@@ -18,6 +18,7 @@ ENV EASYRSA_PKI $OPENVPN/pki
 ENV EASYRSA_VARS_FILE $OPENVPN/vars
 
 ENV IP_OR_URL "146.185.132.202"
+ENV OVPN_CN "OpenVPN"
 
 VOLUME ["/etc/openvpn"]
 
@@ -34,4 +35,4 @@ RUN chmod a+x /usr/local/bin/*
 ADD ./otp/openvpn /etc/pam.d/
 
 RUN ovpn_genconfig -u udp://$IP_OR_URL:1194 && \
-    ovpn_initpki "nopass"
+    ovpn_initpki nopass
