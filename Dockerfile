@@ -25,10 +25,6 @@ VOLUME ["/etc/openvpn"]
 EXPOSE 1194/udp
 
 WORKDIR /etc/openvpn
-
-RUN ["ovpn_genconfig", "-u", "udp://$IP_OR_URL:1194"]
-RUN ["ovpn_initpki"]
-
 CMD ["ovpn_run"]
 
 ADD ./bin /usr/local/bin
@@ -36,3 +32,6 @@ RUN chmod a+x /usr/local/bin/*
 
 # Add support for OTP authentication using a PAM module
 ADD ./otp/openvpn /etc/pam.d/
+
+RUN ovpn_genconfig -u udp://$IP_OR_URL:1194
+RUN ovpn_initpki
