@@ -34,4 +34,4 @@ RUN chmod a+x /usr/local/bin/*
 ADD ./otp/openvpn /etc/pam.d/
 
 RUN ovpn_genconfig -u udp://$IP_OR_URL:1194 && \
-    ovpn_initpki
+    ovpn_initpki "nopass"
