@@ -26,8 +26,8 @@ EXPOSE 1194/udp
 
 WORKDIR /etc/openvpn
 
-RUN ./bin/ovpn_genconfig -u udp://$IP_OR_URL:1194
-RUN ./bin/ovpn_initpki
+RUN ["ovpn_genconfig", "-u", "udp://$IP_OR_URL:1194"]
+RUN ["ovpn_initpki"]
 
 CMD ["ovpn_run"]
 
